@@ -38,6 +38,8 @@ double Circle::getRadius() const
     return r_;
 }
 
+double Circle::getPi() const {return M_PI;}
+
 void Circle::print() const
 {
     std::cout << "Circle: radius: " << getRadius() << std::endl

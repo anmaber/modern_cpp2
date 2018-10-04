@@ -13,6 +13,7 @@ class Shape
 
 public:
     Shape()=default;
+    Shape(const Shape & other) = default;
     Shape(Color c)
     : _color(c){}
 

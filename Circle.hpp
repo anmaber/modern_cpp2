@@ -3,7 +3,8 @@
 #include "Shape.hpp"
 #include <algorithm>
 
-class Circle final : public Shape
+
+ class alignas(2) Circle  final : public Shape
 {
 public:
     Circle(double r);
@@ -16,6 +17,8 @@ public:
     double getArea() const override;
     double getPerimeter() const override;
     double getRadius() const;
+    [[deprecated]]
+    double getPi() const;
     void print() const override;
 
 private:
