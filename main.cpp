@@ -10,6 +10,11 @@
 
 using namespace std;
 
+template<class DerivedType, class... Arguments> std::shared_ptr<Shape> make_shape(Arguments&&... args)
+{
+    return shared_ptr<Shape>(new DerivedType(forward<Arguments>(args)...));
+}
+
 using Collection=vector<shared_ptr<Shape>>;
 /*
 
@@ -20,8 +25,7 @@ auto sortByArea= [](shared_ptr<Shape> first, shared_ptr<Shape> second)
         return false;
     }
     return (first->getArea() < second->getArea());
-};
-
+};rep
 */
 
 
@@ -93,10 +97,10 @@ int main()
 {
     cout << "Circle alignment: "<< alignof(class Circle)<<endl<<endl;
 
-    auto shape = make_shared<Circle>(5.0);
-    Collection shapes{make_shared<Circle>(2.0),make_shared<Circle>(3.0), nullptr,
-                      make_shared<Circle>(4.0),make_shared<Rectangle>(10.0, 5.0),
-                      make_shared<Square>(3.0),make_shared<Circle>(4.0)};
+    auto shape = make_shape<Circle>(5.0);
+    Collection shapes{make_shape<Circle>(2.0),make_shape<Circle>(3.0), nullptr,
+                      make_shape<Circle>(4.0),make_shape<Rectangle>(10.0, 5.0),
+                      make_shape<Square>(3.0),make_shape<Circle>(4.0)};
    /* shapes.push_back(new Circle(2.0));
     shapes.push_back(new Circle(3.0));
     shapes.push_back(nullptr);
@@ -123,9 +127,9 @@ int main()
     cout << "Areas after sort: " << std::endl;
     printAreas(shapes);
 
-    auto circle =make_shared<Circle>(2.0);
+    auto circle =make_shape<Circle>(2.0);
     shapes.push_back(std::move(circle));
-    auto square = make_shared<Square>(4.0);
+    auto square = make_shape<Square>(4.0);
     shapes.push_back(square);
 
     findFirstShapeMatchingPredicate(shapes, [x=20](shared_ptr<Shape> s)
