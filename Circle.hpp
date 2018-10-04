@@ -11,8 +11,8 @@ public:
     Circle(double r,Color c);
     Circle(const Circle & other)=default;
     Circle& operator = (const Circle &) = default;
-    Circle(Circle && other) = default;
-    Circle& operator =(Circle && other) = default;
+    Circle(Circle && other) noexcept = default;
+    Circle& operator =(Circle && other) noexcept = default;
 
     double getArea() const override;
     double getPerimeter() const override;

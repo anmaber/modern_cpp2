@@ -7,8 +7,8 @@ class Rectangle : public Shape
 public:
     Rectangle(double x, double y);
     Rectangle(const Rectangle & other)=default;
-    Rectangle(Rectangle && other)=default;
-    Rectangle& operator =(Rectangle && other)=default;
+    Rectangle(Rectangle && other)noexcept=default;
+    Rectangle& operator =(Rectangle && other)noexcept=default;
 
     double getArea() const noexcept override;
     double getPerimeter() const noexcept override;

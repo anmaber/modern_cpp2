@@ -93,6 +93,7 @@ int main()
 {
     cout << "Circle alignment: "<< alignof(class Circle)<<endl<<endl;
 
+    auto shape = make_shared<Circle>(5.0);
     Collection shapes{make_shared<Circle>(2.0),make_shared<Circle>(3.0), nullptr,
                       make_shared<Circle>(4.0),make_shared<Rectangle>(10.0, 5.0),
                       make_shared<Square>(3.0),make_shared<Circle>(4.0)};
@@ -104,6 +105,7 @@ int main()
     shapes.push_back(new Square(3.0));
     shapes.push_back(new Circle(4.0));
 */
+    shapes.push_back(move(shape));
     printCollectionElements(shapes);
 
     cout << "Areas before sort: " << std::endl;
